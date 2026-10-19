@@ -87,3 +87,37 @@ class LogoutView(APIView):
             },
             status=status.HTTP_200_OK,
         )
+
+
+class ProfileView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        profile = getattr(user, "profile", None)
+
+        if profile is not None:
+            role = profile.role
+            phone_number = profile.phone_number
+        elif user.is_staff:
+            role = "admin"
+            phone_number = ""
+        else:
+            role = "customer"
+            phone_number = ""
+
+        return Response(
+            {
+                "status": "success",
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                    "phone_number": phone_number,
+                    "role": role,
+                },
+            },
+            status=status.HTTP_200_OK,
+        )
+
+
