@@ -1,0 +1,22 @@
+@"
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  structure-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify project structure
+        run: |
+          test -d frontend
+          test -d backend
+          test -d docs
+"@ | Set-Content .github/workflows/tests.yml
