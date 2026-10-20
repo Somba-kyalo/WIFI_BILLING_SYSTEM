@@ -174,3 +174,90 @@ class ChangePasswordSerializer(serializers.Serializer):
             )
 
         return attrs
+
+
+class UpdateProfileSerializer(serializers.Serializer):
+    username = serializers.CharField(
+        max_length=150,
+        required=False,
+    )
+
+    email = serializers.EmailField(
+        required=False,
+    )
+
+    phone_number = serializers.CharField(
+        max_length=20,
+        required=False,
+        allow_blank=True,
+    )
+
+    def validate_username(self, value):
+        user = self.instance
+
+        if User.objects.filter(username__iexact=value).exclude(pk=user.pk).exists():
+            raise serializers.ValidationError("This username is already taken.")
+
+        return value
+
+    def validate_email(self, value):
+        user = self.instance
+
+        if User.objects.filter(email__iexact=value).exclude(pk=user.pk).exists():
+            raise serializers.ValidationError(
+                "This email address is already registered."
+            )
+
+        return value
+
+    def validate(self, attrs):
+        if not attrs:
+            raise serializers.ValidationError("Provide at least one field to update.")
+
+        return attrs
+
+    def update(self, instance, validated_data):
+        update_fields = []
+
+        if "username" in validated_data:
+            instance.username = validated_data["username"]
+            update_fields.append("username")
+
+        if "email" in validated_data:
+            instance.email = validated_data["email"]
+            update_fields.append("email")
+
+        if update_fields:
+            instance.save(update_fields=update_fields)
+
+        if "phone_number" in validated_data:
+            profile, created = UserProfile.objects.get_or_create(
+                user=instance,
+                defaults={"role": "customer"},
+            )
+
+            profile.phone_number = validated_data["phone_number"]
+            profile.save(update_fields=["phone_number"])
+
+        return instance
+
+    def to_representation(self, instance):
+        profile = getattr(instance, "profile", None)
+
+        if profile is not None:
+            phone_number = profile.phone_number
+            role = profile.role
+        elif instance.is_staff:
+            phone_number = ""
+            role = "admin"
+        else:
+            phone_number = ""
+            role = "customer"
+
+        return {
+            "id": instance.id,
+            "username": instance.username,
+            "email": instance.email,
+            "phone_number": phone_number,
+            "role": role,
+        }
