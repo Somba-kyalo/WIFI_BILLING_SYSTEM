@@ -9,6 +9,7 @@ from .serializers import (
     ChangePasswordSerializer,
     LoginSerializer,
     RegistrationSerializer,
+    UpdateProfileSerializer,
 )
 
 class RegistrationView(generics.CreateAPIView):
@@ -142,6 +143,29 @@ class ChangePasswordView(APIView):
             {
                 "status": "success",
                 "message": "Your password has been changed successfully.",
+            },
+            status=status.HTTP_200_OK,
+        )
+
+
+class UpdateProfileView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def patch(self, request):
+        serializer = UpdateProfileSerializer(
+            instance=request.user,
+            data=request.data,
+            partial=True,
+        )
+
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+
+        return Response(
+            {
+                "status": "success",
+                "message": "Your profile has been updated successfully.",
+                "user": serializer.to_representation(user),
             },
             status=status.HTTP_200_OK,
         )
