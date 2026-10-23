@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.http import JsonResponse
 from django.urls import include, path
 
+from .views import csrf_token_view
+
 
 def api_root(request):
     return JsonResponse(
@@ -32,8 +34,6 @@ urlpatterns = [
     path("", api_root, name="api-root"),
     path("admin/", admin.site.urls),
     path("api/health/", health_check, name="health-check"),
-    path(
-        "api/accounts/",
-        include("apps.accounts.urls"),
-    ),
+    path("api/accounts/", include("apps.accounts.urls")),
+    path("api/csrf/", csrf_token_view, name="csrf-token"),
 ]
