@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 
 import ForgotPasswordPage from "../pages/public/ForgotPasswordPage";
@@ -9,6 +9,7 @@ import RegisterPage from "../pages/public/RegisterPage";
 import UpdateProfilePage from "../pages/public/UpdateProfilePage";
 import ChangePasswordPage from "../pages/public/ChangePasswordPage";
 import DashboardPage from "../pages/customer/DashboardPage";
+import PackagesPage from "../pages/customer/PackagesPage";
 
 
 
@@ -62,7 +63,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
             className="nav-register-button"
             onClick={closeMenu}
           >
-            Create Account <span aria-hidden="true">→</span>
+            Create Account <span aria-hidden="true">â†’</span>
           </Link>
         </div>
       </div>
@@ -91,7 +92,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
 
         <div className="hero-actions">
           <Link to="/register" className="hero-primary-button">
-            Get Started Free <span aria-hidden="true">→</span>
+            Get Started Free <span aria-hidden="true">â†’</span>
           </Link>
           <Link to="/login" className="hero-secondary-button">
             Sign In
@@ -99,9 +100,9 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
         </div>
 
         <div className="hero-assurance">
-          <span aria-hidden="true">✓</span>
+          <span aria-hidden="true">âœ“</span>
           Easy account management
-          <span className="assurance-divider">·</span>
+          <span className="assurance-divider">Â·</span>
           Convenient access
         </div>
       </div>
@@ -143,7 +144,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
           <div className="visual-divider" />
 
           <div className="visual-feature">
-            <span className="feature-check" aria-hidden="true">✓</span>
+            <span className="feature-check" aria-hidden="true">âœ“</span>
             <div>
               <strong>Account management</strong>
               <p>Manage your details in one place</p>
@@ -151,7 +152,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
           </div>
 
           <div className="visual-feature">
-            <span className="feature-check" aria-hidden="true">✓</span>
+            <span className="feature-check" aria-hidden="true">âœ“</span>
             <div>
               <strong>Wi-Fi packages</strong>
               <p>Explore available internet options</p>
@@ -159,7 +160,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
           </div>
 
           <div className="visual-feature">
-            <span className="feature-check" aria-hidden="true">✓</span>
+            <span className="feature-check" aria-hidden="true">âœ“</span>
             <div>
               <strong>Convenient access</strong>
               <p>Your connectivity, made simpler</p>
@@ -168,7 +169,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
         </div>
 
         <div className="floating-card floating-card-top">
-          <span className="floating-icon" aria-hidden="true">⌁</span>
+          <span className="floating-icon" aria-hidden="true">âŒ</span>
           <div>
             <strong>Stay connected</strong>
             <span>A smarter online experience</span>
@@ -176,7 +177,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
         </div>
 
         <div className="floating-card floating-card-bottom">
-          <span className="floating-icon floating-icon-green" aria-hidden="true">✓</span>
+          <span className="floating-icon floating-icon-green" aria-hidden="true">âœ“</span>
           <div>
             <strong>Simple & convenient</strong>
             <span>Built around your needs</span>
@@ -197,7 +198,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
 
       <div className="feature-grid">
         <article className="feature-card">
-          <div className="feature-card-icon" aria-hidden="true">◉</div>
+          <div className="feature-card-icon" aria-hidden="true">â—‰</div>
           <h3>Simple Account Access</h3>
           <p>
             Create an account and access your personal space whenever
@@ -206,7 +207,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
         </article>
 
         <article className="feature-card">
-          <div className="feature-card-icon" aria-hidden="true">⌁</div>
+          <div className="feature-card-icon" aria-hidden="true">âŒ</div>
           <h3>Wi-Fi Management</h3>
           <p>
             Find your way around your internet account and available
@@ -215,7 +216,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
         </article>
 
         <article className="feature-card">
-          <div className="feature-card-icon" aria-hidden="true">↗</div>
+          <div className="feature-card-icon" aria-hidden="true">â†—</div>
           <h3>Convenient Experience</h3>
           <p>
             Use a clean dashboard designed to make managing your
@@ -237,7 +238,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
       </div>
 
       <Link to="/register" className="hero-primary-button">
-        Join HotspotHub <span aria-hidden="true">→</span>
+        Join HotspotHub <span aria-hidden="true">â†’</span>
       </Link>
     </section>
 
@@ -247,7 +248,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
       <p>Create your account or sign in to continue.</p>
       <div className="hero-actions">
         <Link to="/register" className="hero-primary-button">
-          Create Account <span aria-hidden="true">→</span>
+          Create Account <span aria-hidden="true">â†’</span>
         </Link>
         <Link to="/login" className="hero-secondary-button">
           Login to Your Account
@@ -267,7 +268,7 @@ Hotspot<span className="brand-highlight">Hub</span> </span> </Link>
     <p>Smarter Wi-Fi management. A simpler connection.</p>
 
     <span className="footer-copyright">
-      © {new Date().getFullYear()} HotspotHub
+      Â© {new Date().getFullYear()} HotspotHub
     </span>
   </footer>
 </div>
@@ -294,8 +295,11 @@ return ( <Routes>
 <Route path="/reset-password" element={<ResetPasswordPage />} />
 <Route path="/login" element={<LoginPage />} />
 <Route path="/dashboard" element={<DashboardPage />} />
+<Route path="/packages" element={<PackagesPage />} />
 <Route path="*" element={<NotFoundPage />} /> </Routes>
 );
 }
 
 export default Router;
+
+
