@@ -14,6 +14,8 @@ def api_root(request):
             "endpoints": {
                 "health": "/api/health/",
                 "registration": "/api/accounts/register/",
+                "packages": "/api/packages/",
+                "purchases": "/api/purchases/",
                 "admin": "/admin/",
             },
         }
@@ -37,4 +39,5 @@ urlpatterns = [
     path("api/accounts/", include("apps.accounts.urls")),
     path("api/csrf/", csrf_token_view, name="csrf-token"),
     path("api/packages/", include("apps.packages.urls")),
+    path("api/purchases/", include("apps.purchases.urls")),
 ]
