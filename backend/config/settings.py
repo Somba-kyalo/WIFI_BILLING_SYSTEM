@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "apps.accounts",
     "apps.packages",
+    "apps.purchases.apps.PurchasesConfig",
 ]
 
 
