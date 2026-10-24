@@ -36,4 +36,5 @@ urlpatterns = [
     path("api/health/", health_check, name="health-check"),
     path("api/accounts/", include("apps.accounts.urls")),
     path("api/csrf/", csrf_token_view, name="csrf-token"),
+    path("api/packages/", include("apps.packages.urls")),
 ]
