@@ -1,12 +1,17 @@
-@"
+@'
 # Python
 __pycache__/
 *.py[cod]
 *.pyo
 .venv/
+.venv*/
 venv/
 env/
+
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
 
 # Django
 db.sqlite3
@@ -18,10 +23,6 @@ node_modules/
 dist/
 coverage/
 
-# Environment and secrets
-.env.*
-!.env.example
-
 # Editors and operating system
 .vscode/
 .idea/
@@ -30,4 +31,4 @@ Thumbs.db
 
 # Logs
 *.log
-"@ | Set-Content .gitignore
+'@ | Set-Content -Path .\.gitignore -Encoding utf8
